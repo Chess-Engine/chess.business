@@ -2,7 +2,7 @@
 
 namespace chess.business
 {
-    public class MovementChecker 
+    public class MovementChecker
     {
 
         public static bool[,] CheckWhitePawnMoves(int x, int y, Piece[,] pieces)
@@ -54,13 +54,19 @@ namespace chess.business
                             newMovement[x + 1, y + 1] = true;
 
                         }
+                    }
 
-                        // evaluation false ???? It did not work when i used else if
+                    // evaluation false ???? It did not work when i used else if
+                    if ((pieces[x - 1, y + 1] != null))
+                    {
                         if ((pieces[x - 1, y + 1].Color == Color.Black))
                         {
-                            newMovement[x - 1, y + 1] = true;
+                            newMovement[x - 1, y - 1] = true;
                         }
+
                     }
+
+
 
                 }
 
@@ -70,46 +76,46 @@ namespace chess.business
         }
 
 
-        public static bool[,] CheckBlackPawnMoves(int x, int y, Piece[,] pieces)
+        public static bool[][] CheckBlackPawnMoves(int x, int y, Piece[][] pieces)
         {
-            bool[,] newMovement = new bool[8, 8];
+            bool[][] newMovement = new bool[8][];
             // pieces.BoardPiece[0,1]
             if ((x >= 0 && x < 8) && (y >= 0 && y < 8))
             {
                 if (y == 6)
                 {
-                    if (pieces[x, 5] == null && pieces[x, 4] == null)
+                    if (pieces[x][5] == null && pieces[x][4] == null)
                     {
-                        newMovement[x, 5] = true;
-                        newMovement[x, 4] = true;
+                        newMovement[x][5] = true;
+                        newMovement[x][4] = true;
 
                     }
-                    else if (pieces[x, 5] == null)
+                    else if (pieces[x][5] == null)
                     {
-                        newMovement[x, 5] = true;
+                        newMovement[x][5] = true;
 
                     }
 
                 }
                 else if (y > 0 && y < 6)
                 {
-                    if (pieces[x, y - 1] == null)
+                    if (pieces[x][y - 1] == null)
                     {
-                        newMovement[x, y - 1] = true;
+                        newMovement[x][y - 1] = true;
 
                     }
 
                 }
                 if (x > 0 && y > 0)
                 {
-                    if (pieces[x - 1, y - 1] != null && pieces[x - 1, y - 1]?.Color == Color.White)
+                    if (pieces[x - 1][y - 1] != null && pieces[x - 1][y - 1]?.Color == Color.White)
                     {
-                        newMovement[x - 1, y - 1] = true;
+                        newMovement[x - 1][y - 1] = true;
 
                     }
-                    if (pieces[x + 1, y - 1]?.Color == Color.White)
+                    if (pieces[x + 1][y - 1]?.Color == Color.White)
                     {
-                        newMovement[x - 1, y + 1] = true;
+                        newMovement[x - 1][y - 1] = true;
                     }
 
                 }

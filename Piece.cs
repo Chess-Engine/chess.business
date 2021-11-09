@@ -10,9 +10,9 @@ namespace chess.business
         White = 2,
     }
     /// <summary>
-    /// Enum for the piece type
+    /// Enum for the piece Sort
     /// </summary>
-    public enum Type : byte
+    public enum Sort : byte
     {
         Queen = 1,
         King = 2,
@@ -26,24 +26,24 @@ namespace chess.business
    public class Piece
     {
 
-        public Type Type { get; set; }
+        public Sort Sort { get; set; }
         public Color Color { get; set; }
         public uint MoveCount { get; set; }
-        public Piece(Type type, Color color)
+        public Piece(Sort Sort, Color color)
         {
-            this.Type = type;
+            this.Sort = Sort;
             this.Color = color;
 
         }
         /// <summary>
-        /// Solves the reference type issue. 
+        /// Solves the reference Sort issue. 
         /// </summary>
         /// <param name="piece"></param>
         public Piece(Piece piece)
         {
 
 
-            Type = piece.Type;
+            Sort = piece.Sort;
             MoveCount = piece.MoveCount;
         }
 
